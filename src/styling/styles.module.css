@@ -1,0 +1,11 @@
+
+.nameList{
+ position:fixed; 
+width: 50%;
+height:30%;
+border: 1px solid blue;
+overflow: auto;
+
+ /* margin: auto;
+padding-left: 0;  */
+}
