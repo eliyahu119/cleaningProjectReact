@@ -1,13 +1,12 @@
-import React, {useState,useRef} from 'react';
+import React, {useState} from 'react';
 //import './App.css';
 import ListOfItems from './list';
-import styled from 'styled-components'
+import DateObject from './dateObject'
 import styles from  '../styling/styles.module.css' 
-import NameForm from './textComponet'
+import halfstyles from  '../styling/half.module.css' 
+import Slider from '@material-ui/core/Button';
+import ContinuousSlider from "./demo"
 
-var DivI = styled.div`
-  
-`;
 
 
 //setItems={setItems}
@@ -16,13 +15,14 @@ function App() {
  var itemsj=["קובי", "אלון", "אליהו", "רן", "גיא","רועי", "אמיר כ", "אמיר י", "טל", "יששכר", "שקד", "עומר", "אשל","קובי", "אלון", "אליהו", "רן", "גיא","רועי", "אמיר כ", "אמיר י", "טל", "יששכר", "שקד", "עומר", "אשל" ]
  var name="אליהו"
  var [items, setItems] = useState(itemsj);
+ var itemChosen=useState(0)
  return (
     <React.StrictMode>
-    {/* <h1>{items.join(" ")}</h1> */}
-    {/* <DivI> */}
-    {/* <ListOfItems items={items} name={name} setItems={setItems} className={styles.nameList}/> */}
-    {/* </DivI> */}
-    <NameForm items={items} setItems={setItems} />
+    <div className={halfstyles.half}>
+    <ListOfItems items={items} name={name} setItems={setItems} className={styles.nameList} itemChosen={itemChosen} />
+    </div>
+    {/* <DateObject /> */}
+    {/* <ContinuousSlider /> */}
     </React.StrictMode>
   );
 }

@@ -9,11 +9,11 @@ const RemBt=props=>{
         .concat(props.items.slice(props.index+1))
         props.setItems(items)
         }
+        
     return(
      <button className={buttons.removalButton} onClick={removal}>הסר</button>
      )
 }
-
 
 
 export default RemBt
