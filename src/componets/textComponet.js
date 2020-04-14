@@ -1,35 +1,31 @@
 
-import React from 'react'
+import React, {useState} from 'react';
 import buttons from '../styling/buttons.module.css'
+import { requirePropFactory } from '@material-ui/core';
 
-class NameForm extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = {value: ''};
-  
-      this.handleChange = this.handleChange.bind(this);
-      this.handleSubmit = this.handleSubmit.bind(this);
-    }
-  
-    handleChange(event) {
-      this.setState({value: event.target.value});
-    }
-  
-    handleSubmit(event) {
-      this.props.setItems(this.props.items.push(this.state.value));
-      event.preventDefault();
-    }
-  
-    render() {
-      return (
-       <div>
-        <h1>{this.state.value}</h1>
-          <label>
-        <input type="text" value={this.state.value} onChange={this.handleChange} />
-        </label>
-        <button  className={buttons.addButton} onClick={this.handleSubmit}>הוסף אלמנט</button>
-        </div>
-      );
-    }
+function  AddItemsprop (props)
+{
+  var [value,setValue]=useState("")
+  var handleChange=event=>{
+    setValue(event.target.value)
   }
-  export default NameForm 
+  var handleSubmit=()=>{
+    var temp=value
+    temp.trim()
+    if (temp!=="") {
+          props.setItems(props.items.concat(temp));
+      }
+      setValue("")
+    }
+
+  return (
+          <div>
+               <label>
+                   <input type="text" value={value} onChange={handleChange} />
+               </label>
+                <button  className={buttons.addButton} onClick={handleSubmit}> הוסף {props.name} </button>
+            </div>
+          );
+}
+
+export default AddItemsprop 

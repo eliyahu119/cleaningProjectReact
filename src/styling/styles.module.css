@@ -1,11 +1,70 @@
 
-.nameList{
- position:fixed; 
-width: 50%;
-height:30%;
-border: 1px solid blue;
+.nameListSoldeirs{
+position:absolute;
+/* right: 10%; */
+width: 20%;
+height:80%;
+display:block;
 overflow: auto;
+margin: right;
+top:9%
+/* padding-left: 0;   */
+}
 
- /* margin: auto;
-padding-left: 0;  */
+.nameListCommenders{
+    position:absolute;
+    /* right: 10%; */
+    width: 10%;
+    right: 68%;
+    height: 80%;
+    display:block;
+    overflow: auto;
+    margin: right;
+    top:9%
+    /* padding-left: 0;   */
+    }
+    
+
+/* .nameListCommenders{
+    position: absolute ;
+    top:9%;
+    overflow: auto;
+    display:block;
+    margin:right;
+} */
+
+.sliderNunberOfLines{
+    position: absolute ;
+    width :10%;
+    right: 55%;
+    top:10%;
+}
+
+.sliderNunberOfBlocks{
+    position: absolute ;
+    width :10%;
+    right: 55%;
+    top:20%;
+}
+
+.sliderNunberOfBorder{
+    position: absolute ;
+    width :10%;
+    right: 55%;
+    top:30%;
+}
+
+.sliderWeakendDays{
+    position: absolute ;
+    width :10%;
+    right: 55%;
+    top:40%;
+}
+
+
+.dateObject{
+    position: absolute ;
+    width :10%;
+    right: 55%;
+    top:50%;
 }

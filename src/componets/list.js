@@ -4,6 +4,7 @@ import React from 'react';
 import RemBt from './removalButton'
 import Sign from "./signButton"
 import AddItemsprop from './textComponet'
+
  
 
 const Item = styled.li`
@@ -14,6 +15,7 @@ const Item = styled.li`
   &:hover {
       background: #EEE;
   }  
+  padding-left:1%
 `;
 
 const List = styled.ul`
@@ -36,45 +38,47 @@ const AddItems = styled.li`
     border-top: 1px solid #888;
 
 `;
-
-
 const SortableItem = SortableElement(Item);
     const SortableList = SortableContainer(props => {  
     var [itemChossen,setItemChossen]=props.itemChosen
- //  console.log(props.itemChosen, "hello")
+    var [items, setItems]=props.Items
    return (
-  <div>
+     <div className={props.className}>
        <List>  
        <Header>{props.name}</Header>
            {       
-                    props.items.map((item, index) =>{
-                     var backgroundColor=itemChossen==index?"#afe6da":"";
+                    items.map((item, index) =>{
+                     var backgroundColor=itemChossen===index?"#afe6da":"";
                       return(
                       <SortableItem  ey={`item-${index}`}  index={index} key={index} style={{backgroundColor:backgroundColor}}>
                       {item}
-                      <RemBt items={props.items} setItems={props.setItems} index={index} />
+                      <RemBt items={items} setItems={setItems} index={index} />
                       <Sign setItemChossen={setItemChossen}  index={index} />
                      </SortableItem>
                      )
                   }
                )           
            }
-        <AddItems><AddItemsprop items={props.items} setItems={props.setItems} /></AddItems>
+        <AddItems><AddItemsprop items={items} setItems={setItems} name={props.name} /></AddItems>
        </List>
    </div>
    );
 });
 
+
  function ListOfitems(props){
+    var [items, setItems]=props.Items
      var sortTheElements=({oldIndex,newIndex})=>{
-        const removed=props.items.slice(0,oldIndex)
-        .concat(props.items.slice(oldIndex+1));
-             props.setItems(
-             removed.slice(0,newIndex)
-             .concat([props.items[oldIndex]])
-             .concat(removed.slice(newIndex)))
+        const removed=items.slice(0,oldIndex)
+        .concat(items.slice(oldIndex+1));
+        setItems(
+        removed.slice(0,newIndex)
+        .concat([items[oldIndex]])
+        .concat(removed.slice(newIndex)))
+
+             //The set of the marking the right variable in the list
              var [itemChossen,setItemChossen]=props.itemChosen
-             if(itemChossen==oldIndex)
+             if(itemChossen===oldIndex)
              {
              setItemChossen(newIndex)
              } else 
@@ -84,9 +88,8 @@ const SortableItem = SortableElement(Item);
               else
             if((itemChossen<oldIndex)&&itemChossen>=newIndex)
              setItemChossen(itemChossen+1)
-           console.log(oldIndex,newIndex,itemChossen)
     }
-    return <SortableList items={props.items} name={props.name} setItems={props.setItems} className={props.className} onSortEnd={sortTheElements} itemChosen={props.itemChosen}/>
+    return <SortableList Items={props.Items} name={props.name} className={props.className} onSortEnd={sortTheElements} itemChosen={props.itemChosen}/>
 }
 
 export default ListOfitems
