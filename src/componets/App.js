@@ -24,10 +24,6 @@ import axios from 'axios';
   // }
   // var data=GetTheJson()
   // console.log("שיט")
-
-  useEffect(()=>{
-
-  },[]);
   // var soldiers = useState(data.soldiers);
   // var Commanders = useState(data.Commanders);
   // var soldierInLine=useState(data.soldierInLine);
@@ -39,31 +35,61 @@ import axios from 'axios';
   // var date=useState(data.date);
   // var nameS="חיילים"
   // var nameC="מפקדים"
-  // soldiers[1](result.data.soldiers) 
-  // Commanders [1](result.data.Commanders) 
-  // soldierInLine[1](result.data.soldierInLine) 
-  // commanderInLine[1](result.data.commanderInLine) 
-  // numberOfBlocks[1](result.data.numberOfBlocks) 
-  // maxBorderSize[1](result.data.maxBorderSize)  
-  // max_range[1](result.data.max_range) 
-  // weekendDays[1](result.data.weekendDays)  
-  // date[1](result.data.date) 
+  
+
+  const useFetch = url => {
+    const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
+  
+    // Similar to componentDidMount and componentDidUpdate:
+    useEffect(async () => {
+      const response = await fetch(url);
+      const data = await response.json();
+      const item = data;
+      soldiers[1](data.soldiers);
+      Commanders[1](data.Commanders) 
+      soldierInLine[1](data.soldierInLine) 
+      commanderInLine[1](data.commanderInLine) 
+      numberOfBlocks[1](data.numberOfBlocks) 
+       maxBorderSize[1](data.maxBorderSize)  
+       max_range[1](data.max_range) 
+      weekendDays[1](data.weekendDays)  
+       date[1](data.date) 
+       setLoading(false);
+    }, []);
+  
+    return { data, loading };
+  };
+
+  // soldiers[1](data.soldiers);
+  // Commanders[1](data.Commanders) 
+  // soldierInLine[1](data.soldierInLine) 
+  // commanderInLine[1](data.commanderInLine) 
+  // numberOfBlocks[1](data.numberOfBlocks) 
+  // maxBorderSize[1](data.maxBorderSize)  
+  // max_range[1](data.max_range) 
+  // weekendDays[1](data.weekendDays)  
+  // date[1](data.date) 
     
- var itemsj=["קובי", "אלון", "אליהו", "רן", "גיא","רועי", "אמיר כ", "אמיר י", "טל", "יששכר", "שקד", "עומר", "אשל","קובי", "אלון", "אליהו", "רן", "גיא","רועי", "אמיר כ", "אמיר י", "טל", "יששכר", "שקד", "עומר", "אשל" ]
- var itemC=["רן", "גיא","רועי", "אמיר כ", "אמיר י", "טל", "יששכר",]
+
+ //var itemsj=["קובי", "אלון", "אליהו", "רן", "גיא","רועי", "אמיר כ", "אמיר י", "טל", "יששכר", "שקד", "עומר", "אשל","קובי", "אלון", "אליהו", "רן", "גיא","רועי", "אמיר כ", "אמיר י", "טל", "יששכר", "שקד", "עומר", "אשל" ]
+ //var itemC=["רן", "גיא","רועי", "אמיר כ", "אמיר י", "טל", "יששכר",]
+
+ var DateTime="2020-04-15"
  var nameS="חיילים"
  var nameC="מפקדים"
- var DateTime="2020-04-15"
-
- var soldiers = useState(itemsj);
- var Commanders=useState(itemC)
+ var date=useState(DateTime) 
+ var soldiers = useState([]);
+ var Commanders=useState([])
  var soldierInLine=useState(0)
  var commanderInLine=useState(0)
  var max_range=useState(0)
  var numberOfBlocks=useState(0)
  var maxBorderSize=useState(0)
  var weekendDays=useState(0)
- var date=useState(DateTime)
+
+ const { data, loading } = useFetch("/soldier_file.json");
+
 
  return (
     <React.StrictMode>
